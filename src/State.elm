@@ -1,7 +1,7 @@
 module State exposing (..)
 
 import Routing exposing (Route, route)
-import Navigation
+import Navigation exposing (Location, newUrl)
 import UrlParser as Url exposing ((</>), (<?>), s, int, stringParam, top)
 
 
@@ -16,7 +16,7 @@ type alias Model =
 -- INIT
 
 
-init : Navigation.Location -> ( Model, Cmd Msg )
+init : Location -> ( Model, Cmd Msg )
 init location =
     ( Model [ Url.parsePath route location ]
     , Cmd.none
@@ -29,7 +29,7 @@ init location =
 
 type Msg
     = NewUrl String
-    | UrlChange Navigation.Location
+    | UrlChange Location
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -37,7 +37,7 @@ update msg model =
     case msg of
         NewUrl url ->
             ( model
-            , Navigation.newUrl url
+            , newUrl url
             )
 
         UrlChange location ->
