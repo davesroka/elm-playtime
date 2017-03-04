@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
+    "firstTime": "yarn && elm-package install",
     "start": "webpack-dev-server --port 3000",
     "watch": "webpack --watch"
   },
