@@ -1,0 +1,38 @@
+{
+  "name": "elm-playtime",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "webpack-dev-server --port 3000",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davesroka/elm-playtime.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davesroka/elm-playtime/issues"
+  },
+  "homepage": "https://github.com/davesroka/elm-playtime#readme",
+  "dependencies": {
+    "ace-css": "^1.1.0",
+    "elm-test": "^0.18.2",
+    "font-awesome": "^4.7.0"
+  },
+  "devDependencies": {
+    "css-loader": "^0.26.1",
+    "elm-webpack-loader": "^4.2.0",
+    "file-loader": "^0.10.0",
+    "json-server": "^0.9.5",
+    "prettier": "^0.17.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^2.2.1",
+    "webpack-dev-middleware": "^1.10.0",
+    "webpack-dev-server": "^2.3.0"
+  }
+}
