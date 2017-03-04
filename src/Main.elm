@@ -1,7 +1,7 @@
 module Main exposing (..)
 
 import Navigation
-import State exposing (Model, init, Msg(NewUrl, UrlChange), update, subscriptions)
+import State exposing (Model, init, Msg(UrlChange), update, subscriptions)
 import View exposing (view)
 
 
