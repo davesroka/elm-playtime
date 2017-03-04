@@ -9,6 +9,7 @@ import State exposing (Model, init, Msg(NewUrl, UrlChange), update, subscription
 import Routing exposing (Route(..))
 
 
+main : Program Never Model Msg
 main =
     Navigation.program UrlChange
         { init = init
