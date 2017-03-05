@@ -1,15 +1,19 @@
 module View exposing (view)
 
-import Html exposing (Html, a, button, code, div, h1, li, text, ul)
+import Html exposing (Html, a, button, code, div, h1, li, text, ul, nav)
 import Http
 import State exposing (Model, Msg(NewUrl))
 import Routing exposing (Route(..))
 import Pages.Home.View as Home
+import Components.Header as Header
 
 
 view : Model -> Html Msg
 view model =
-    getView model
+    div []
+        [ Header.view model
+        , getView model
+        ]
 
 
 getView : Model -> Html Msg

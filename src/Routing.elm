@@ -22,7 +22,7 @@ routeMatcher =
 
 parseLocation : Location -> Route
 parseLocation location =
-    case (Url.parsePath routeMatcher location) of
+    case (Url.parseHash routeMatcher location) of
         Just route ->
             route
 
