@@ -1,48 +1,41 @@
 module View exposing (view)
 
 import Html exposing (Html, a, button, code, div, h1, li, text, ul)
-import Html.Events exposing (onClick)
 import Http
 import State exposing (Model, Msg(NewUrl))
 import Routing exposing (Route(..))
+import Pages.Home.View as Home
 
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ h1 [] [ text "Links" ]
-        , ul [] (List.map viewLink [ "/", "/blog/", "/blog/42", "/blog/37", "/blog/?search=cats" ])
-        , h1 [] [ text "History" ]
-        , ul [] (List.map viewRoute model.history)
-        ]
+    getView model
 
 
-viewLink : String -> Html Msg
-viewLink url =
-    li [] [ button [ onClick (NewUrl url) ] [ text url ] ]
-
-
-viewRoute : Maybe Route -> Html msg
+viewRoute : Maybe Route -> Route
 viewRoute maybeRoute =
     case maybeRoute of
         Nothing ->
-            li [] [ text "Invalid URL" ]
+            NotFound
 
         Just route ->
-            li [] [ code [] [ text (routeToString route) ] ]
+            route
 
 
-routeToString : Route -> String
-routeToString route =
-    case route of
+getView : Model -> Html Msg
+getView model =
+    case model.currentRoute of
         Home ->
-            "home"
+            Home.view model
 
         BlogList Nothing ->
-            "list all blog posts"
+            div [] [ code [] [ text "List all blog posts" ] ]
 
         BlogList (Just search) ->
-            "search for " ++ Http.encodeUri search
+            div [] [ code [] [ text ("search for " ++ Http.encodeUri search) ] ]
 
         BlogPost id ->
-            "show blog post" ++ toString id
+            div [] [ code [] [ text ("show blog post " ++ toString id) ] ]
+
+        NotFound ->
+            div [] [ text "Not Found" ]

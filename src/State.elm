@@ -1,15 +1,16 @@
 module State exposing (..)
 
-import Routing exposing (Route, route)
+import Routing exposing (Route, parseLocation)
 import Navigation exposing (Location, newUrl)
-import UrlParser as Url exposing ((</>), (<?>), s, int, stringParam, top)
 
 
 -- MODEL
 
 
 type alias Model =
-    { history : List (Maybe Route) }
+    { history : List Route
+    , currentRoute : Route
+    }
 
 
 
@@ -18,9 +19,13 @@ type alias Model =
 
 init : Location -> ( Model, Cmd Msg )
 init location =
-    ( Model [ Url.parsePath route location ]
-    , Cmd.none
-    )
+    let
+        currentRoute =
+            parseLocation location
+    in
+        ( Model [ currentRoute ] currentRoute
+        , Cmd.none
+        )
 
 
 
@@ -41,9 +46,13 @@ update msg model =
             )
 
         UrlChange location ->
-            ( { model | history = Url.parsePath route location :: model.history }
-            , Cmd.none
-            )
+            let
+                newRoute =
+                    parseLocation location
+            in
+                ( { model | history = newRoute :: model.history, currentRoute = newRoute }
+                , Cmd.none
+                )
 
 
 
