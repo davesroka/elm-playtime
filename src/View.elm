@@ -12,16 +12,6 @@ view model =
     getView model
 
 
-viewRoute : Maybe Route -> Route
-viewRoute maybeRoute =
-    case maybeRoute of
-        Nothing ->
-            NotFound
-
-        Just route ->
-            route
-
-
 getView : Model -> Html Msg
 getView model =
     case model.currentRoute of
