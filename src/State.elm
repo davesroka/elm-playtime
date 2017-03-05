@@ -50,7 +50,10 @@ update msg model =
                 newRoute =
                     parseLocation location
             in
-                ( { model | history = newRoute :: model.history, currentRoute = newRoute }
+                ( { model
+                    | history = newRoute :: model.history
+                    , currentRoute = newRoute
+                  }
                 , Cmd.none
                 )
 
