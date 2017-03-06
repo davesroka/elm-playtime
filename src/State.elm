@@ -2,6 +2,7 @@ module State exposing (..)
 
 import Routing exposing (Route, parseLocation)
 import Navigation exposing (Location, newUrl)
+import Widget.State exposing (Widget)
 
 
 -- MODEL
@@ -10,6 +11,7 @@ import Navigation exposing (Location, newUrl)
 type alias Model =
     { history : List Route
     , currentRoute : Route
+    , widgets : List Widget
     }
 
 
