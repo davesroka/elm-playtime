@@ -1,8 +1,8 @@
 module Components.Header exposing (view)
 
 import State exposing (Model, Msg)
-import Html exposing (Html, header, nav, text, a)
-import Html.Attributes exposing (href)
+import Html exposing (Html, header, div, nav, text, a)
+import Html.Attributes exposing (href, class)
 
 
 type alias NavItem =
@@ -25,9 +25,21 @@ view model =
 
 navigation : List NavItem -> Html Msg
 navigation navItems =
-    nav [] (List.map navLink navItems)
+    nav
+        [ class "clearfix white bg-maroon" ]
+        [ div
+            [ class "sm-col" ]
+            (List.map navLink navItems)
+        , div
+            [ class "sm-col-right" ]
+            [ navLink (NavItem "About" "about") ]
+        ]
 
 
 navLink : NavItem -> Html Msg
 navLink navItem =
-    a [ href ("#" ++ navItem.link) ] [ text navItem.displayText ]
+    a
+        [ href ("#" ++ navItem.link)
+        , class "btn py2"
+        ]
+        [ text navItem.displayText ]
