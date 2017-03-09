@@ -2,7 +2,7 @@ module State exposing (..)
 
 import Routing exposing (Route, parseLocation)
 import Navigation exposing (Location, newUrl)
-import Widget.State exposing (Widget)
+import Pages.Widgets.State exposing (Widget)
 
 
 -- MODEL
@@ -25,7 +25,7 @@ init location =
         currentRoute =
             parseLocation location
     in
-        ( Model [ currentRoute ] currentRoute
+        ( Model [ currentRoute ] currentRoute []
         , Cmd.none
         )
 
